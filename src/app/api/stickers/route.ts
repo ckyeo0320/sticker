@@ -48,7 +48,7 @@ export async function POST(request: Request) {
 }
 
 // DELETE: 스티커 개수를 0으로 초기화합니다.
-export async function DELETE(request: Request) {
+export async function DELETE() {
   try {
     await sql`UPDATE praise_stickers SET count = 0 WHERE id = 1;`;
 
