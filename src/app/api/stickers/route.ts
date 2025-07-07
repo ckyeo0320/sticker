@@ -1,8 +1,8 @@
-import { sql } from '@vercel/postgres';
-import { NextResponse } from 'next/server';
+import { sql } from "@vercel/postgres";
+import { NextResponse } from "next/server";
 
 // GET: 현재 스티커 개수를 가져옵니다.
-export async function GET(request: Request) {
+export async function GET() {
   try {
     // praise_stickers 테이블이 없으면 생성합니다.
     await sql`
@@ -24,12 +24,15 @@ export async function GET(request: Request) {
 
     return NextResponse.json({ count }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: (error as Error).message }, { status: 500 });
+    return NextResponse.json(
+      { error: (error as Error).message },
+      { status: 500 }
+    );
   }
 }
 
 // POST: 스티커 개수를 1 증가시킵니다.
-export async function POST(request: Request) {
+export async function POST() {
   try {
     // 현재 개수가 10 미만일 때만 1을 더합니다.
     await sql`
@@ -43,7 +46,10 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ count }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: (error as Error).message }, { status: 500 });
+    return NextResponse.json(
+      { error: (error as Error).message },
+      { status: 500 }
+    );
   }
 }
 
@@ -54,6 +60,9 @@ export async function DELETE() {
 
     return NextResponse.json({ count: 0 }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: (error as Error).message }, { status: 500 });
+    return NextResponse.json(
+      { error: (error as Error).message },
+      { status: 500 }
+    );
   }
 }
