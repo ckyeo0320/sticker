@@ -4,6 +4,8 @@ import { NextResponse } from "next/server";
 // GET: 현재 스티커 개수를 가져옵니다.
 export async function GET() {
   try {
+    console.log("POSTGRES_URL:", process.env.POSTGRES_URL); // 이 줄을 추가합니다.
+
     // praise_stickers 테이블이 없으면 생성합니다.
     await sql`
       CREATE TABLE IF NOT EXISTS praise_stickers (
